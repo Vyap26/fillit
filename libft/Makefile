@@ -14,6 +14,7 @@ NAME = libft.a
 DIR  = ./
 SRC  = $(DIR)ft_atoi.c \
        $(DIR)ft_bzero.c \
+       $(DIR)get_next_line.c \
        $(DIR)ft_isalpha.c\
        $(DIR)ft_isdigit.c\
        $(DIR)ft_isalnum.c\

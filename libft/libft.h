@@ -12,9 +12,12 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <stdio.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# define BUFF_SIZE 5
 
 typedef	struct		s_list
 {
@@ -23,6 +26,14 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_gnl
+{
+	int				fd;
+	char			*rest;
+	struct s_gnl	*next;
+}					t_gnl;
+
+int					get_next_line(int fd, char **line);
 char				*ft_join(char const *s1, char const *s2);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
