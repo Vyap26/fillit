@@ -46,92 +46,92 @@ t_tetra	*new_tetra(char *nam)
 
 int		draw_img(char *line)
 {
-	char	*stoy;
-	char	*niz;
+	char	*a_1;
+	char	*a_2;
 
-	stoy = "#\n#\n#\n#\n";
-	niz = "####\n";
+	a_1 = "#\n#\n#\n#\n";
+	a_2 = "####\n";
 
-	printf("%s\n", stoy);
-	printf("%s\n", niz);
+	printf("%s\n", a_1);
+	printf("%s\n", a_2);
 	return (0);
 }
 
 int		draw_img2(char *ugol)
 {
-	char	*stoypr;
-	char	*stoylv;
-	char 	*sidpr;
-	char 	*sidlv;
-	char 	*lezlev;
-	char 	*lezpr;
-	char 	*padpr;
-	char 	*padlv;
+	char	*b_1;
+	char	*b_2;
+	char 	*b_3;
+	char 	*b_4;
+	char 	*b_5;
+	char 	*b_6;
+	char 	*b_7;
+	char 	*b_8;
 
-	stoypr = "##\n#.\n#.\n";
-	stoylv = "##\n.#\n.#\n";
-	sidpr = "#.\n#.\n##\n";
-	sidlv = ".#\n.#\n##\n";
-	lezlev = "#..\n###\n";
-	lezpr = "..#\n###\n";
-	padpr = "###\n..#\n";
-	padlv = "###\n#..\n";
+	b_1 = "##\n#.\n#.\n";
+	b_2 = "##\n.#\n.#\n";
+	b_3 = "#.\n#.\n##\n";
+	b_4 = ".#\n.#\n##\n";
+	b_5 = "#..\n###\n";
+	b_6 = "..#\n###\n";
+	b_7 = "###\n..#\n";
+	b_8 = "###\n#..\n";
 
-	printf("%s\n", stoypr);
-	printf("%s\n", stoylv);
-	printf("%s\n", sidpr);
-	printf("%s\n", sidlv);
-	printf("%s\n", lezlev);
-	printf("%s\n", lezpr);
-	printf("%s\n", padpr);
-	printf("%s\n", padlv);
+	printf("%s\n", b_1);
+	printf("%s\n", b_2);
+	printf("%s\n", b_3);
+	printf("%s\n", b_4);
+	printf("%s\n", b_5);
+	printf("%s\n", b_6);
+	printf("%s\n", b_7);
+	printf("%s\n", b_8);
 	return (0);
 }
 
 int		draw_img3(char *z)
 {
-	char	*zlv;
-	char	*zpr;
-	char 	*zvnlv;
-	char 	*zvnpr;
+	char	*c_1;
+	char	*c_2;
+	char 	*c_3;
+	char 	*c_4;
 
-	zlv = "##.\n.##\n";
-	zpr = ".##\n##.\n";
-	zvnlv = "#.\n##\n.#\n";
-	zvnpr = ".#\n##\n#.\n";
+	c_1 = "##.\n.##\n";
+	c_2 = ".##\n##.\n";
+	c_3 = "#.\n##\n.#\n";
+	c_4 = ".#\n##\n#.\n";
 
-	printf("%s\n", zlv);
-	printf("%s\n", zpr);
-	printf("%s\n", zvnlv);
-	printf("%s\n", zvnpr);
+	printf("%s\n", c_1);
+	printf("%s\n", c_2);
+	printf("%s\n", c_3);
+	printf("%s\n", c_4);
 	return (0);
 }
 
 int		draw_img4(char *pipka)
 {
-	char	*lv;
-	char	*pr;
-	char 	*verh;
-	char 	*niz;
+	char	*d_1;
+	char	*d_2;
+	char 	*d_3;
+	char 	*d_4;
 
-	lv = ".#\n##\n.#\n";
-	pr = "#.\n##\n#.\n";
-	verh = "###\n.#.\n";
-	niz = ".#.\n###\n";
+	d_1 = ".#\n##\n.#\n";
+	d_2 = "#.\n##\n#.\n";
+	d_3 = "###\n.#.\n";
+	d_4 = ".#.\n###\n";
 
-	printf("%s\n", lv);
-	printf("%s\n", pr);
-	printf("%s\n", verh);
-	printf("%s\n", niz);
+	printf("%s\n", d_1);
+	printf("%s\n", d_2);
+	printf("%s\n", d_3);
+	printf("%s\n", d_4);
 	return (0);
 }
 
 int		draw_img5(char *kvad)
 {
-	char	*op;
+	char	*e_1;
 
-	op = "##\n##\n";
-	printf("%s\n", op);
+	e_1 = "##\n##\n";
+	printf("%s\n", e_1);
 	return (0);
 }
 
