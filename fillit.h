@@ -12,8 +12,14 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# include "libft/libft.h"
 
+typedef	struct		s_tetra
+{
+	char 			*name;
+	char			*img;
+	int				num;
+	struct s_tetra	*next;
+}					t_tetra;
 
-
-
-#include "get_next_line.h"
+#endif
