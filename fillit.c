@@ -41,9 +41,6 @@ int     ft_checkstr(char *str)
     }
     if (flag == 1 || flag == 2)
         {
-            ft_putstr("flag = ");
-            ft_putnbr(flag);
-            ft_putchar('\n');
             ft_putstr("срока проверена успешно!\n");
             return (0);
         }
@@ -64,7 +61,6 @@ int     ft_checkstr(char *str)
 char    *ft_fillit(int fd)
 {
     int ret;
-    int res[4];
     char *line;
     char *tmp[4];
     int fig;
@@ -80,7 +76,7 @@ char    *ft_fillit(int fd)
         c = ft_checkstr(line); //checking the srting for false symbols and it's repeating
         //it will return 0 if the string content only allowed symbols in correct order
         if (c == -1)
-            return (line);
+            return ("error");
         else
             tmp[i] = ft_strdup(line);//filling array with checked strings
         ft_putstr(tmp[i]);
@@ -92,15 +88,16 @@ char    *ft_fillit(int fd)
             i = 0;
             //here will be a function that put the figure to array
             //free the tmp
-            ret = get_next_line(fd, &line);//get next line 
-            if (!(line[0] == '\0') && ret != 0) // if i==4 && (line[0] != '\0' && ret == 0) mean an error
-                return (line);
+            ft_putnbr(ret = get_next_line(fd, &line));//get next line
+            ft_putchar('\n'); 
+            if (!(line == '\0') && ret != 0) // if i==4 && (line[0] != '\0' && ret == 0) mean an error
+                return ("error");
         }
         free(line);
         if (ret != 0)
             ret = get_next_line(fd, &line);
     }
-    return(line);
+    return(tmp[i]);
 }
 
 int    main(void)
@@ -111,8 +108,10 @@ int    main(void)
     fd = open("test.txt", O_RDONLY);
     res = ft_fillit(fd);
     if (res)
-        ft_putstr(res);
-    free(res);
+        {
+            ft_putstr(res);
+    //        free(res);
+        }
     fd = close(fd);
     return (0);
 }
