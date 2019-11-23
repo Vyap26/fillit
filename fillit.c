@@ -1,8 +1,14 @@
-#define sqare 1
-#define stick 2
-#define Tsign 3
-#define Ssign 4
-#define Gsign 5
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fillit.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sisidra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/23 17:43:46 by sisidra           #+#    #+#             */
+/*   Updated: 2019/11/23 17:44:01 by sisidra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
 
@@ -47,33 +53,37 @@ char    ft_fillit(int fd)
     int ret;
     int res[4];
     char line[5];
-    char *tmp[5];
+    char *tmp[4];
     int fig;
     int i;
-    char c;
+    int c;
 
     ret = get_next_line(fd, &line);
     i = 0;
-    while(ret > 0)
+    c = 0;
+    while (ret > 0)
     {
         c = ft_checkstr(line); //checking the srting for false symbols and it's repeating
         //it will return 0 if the string content only allowed symbols in correct order
         if (c == -1)
-            return ("not a valid file");
+            return ("error");
         else
             tmp[i] = ft_strdup(line);//filling array with checked strings
         i++;
-        
-        if (i == 5)
+        if (i == 4)
         {
             fig = figure_out(tmp);//decode the array to it's contains figure
             tmp[i] = '\0';
             i = 0;
             //here will be a function that put the figure to array
             //free the tmp
+            ret = get_next_line(fd, &line);//get next line 
+            if (!(line[0] == '\0') && ret != 0) // if i==4 && (line[0] != '\0' && ret == 0) mean an error
+                return ("error");
         }
-        //free the line
-        ret = get_next_line(fd, &line);
+        free(line);
+        if (ret != 0)
+            ret = get_next_line(fd, &line);
     }
 }
 
@@ -86,5 +96,6 @@ void    main(void)
     res = ft_fillit(fd);
     if (res)
         ft_putstr(res);
+    free(res);
     return (0);
 }
