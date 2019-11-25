@@ -29,7 +29,7 @@ int    ft_checkv(char **tmp)
     int i;
     int j;
     int flag;
-
+    
     i = 0;
     j = 0;
     flag = 0;
@@ -51,8 +51,76 @@ int    ft_checkv(char **tmp)
             j++;
         }
     }
-    //if (flag == 0)
-    //   return (-1);
+    return (0);
+}
+void    ft_cutarr(char **tmp)
+{
+    int i;
+    int k;
+
+    i = 0;
+    k = 3;
+
+    while (i <= k)
+    {
+        if (ft_strcmp(tmp[i], "....") == 0)
+        {
+            ft_putstr ("found spare\n"); 
+            while (i < k)
+            {
+                ft_strcpy(tmp[i], tmp[i + 1]);
+                i++;
+            }
+            ft_strcpy(tmp[k], "\0");
+            i = 3 - k;
+            if (strcmp(tmp[i], "...."))
+                k--;
+        }
+        else
+            i++;
+    }
+}
+
+int ft_checkfile(int fd)
+{
+    int ret;
+    char *line;
+    char *tmp[4];
+    char *res;
+    int fig;
+    int i;
+    int j;
+
+    ret = get_next_line(fd, &line);
+    i = 0;
+    while (ret > 0)
+    {
+        tmp[i] = ft_strdup(line);//filling array with checked strings
+        i++;
+        if (i == 4)
+        {
+            if (ft_checkv(tmp) == -1)
+                return (-1);
+            ft_cutarr(tmp);
+            j = 0;
+            while (j < 4)
+                {
+                    ft_putstr(tmp[j]);
+                    ft_putchar('\n');
+                    j++;
+                }
+            fig =  0;//figure_out(tmp);//decode the array to it's contains figure
+            i = 0;
+            //here will be a function that put the figure to array
+            //free the tmp
+            //ft_putchar('\n'); 
+            if (get_next_line(fd, &line) == 1 && *line != '\0') // if i==4 && (line[0] != '\0' && ret == 0) mean an error
+                return (-1);
+        }
+        free(line);
+        if (ret != 0)
+            ret = get_next_line(fd, &line);
+    }
     return (0);
 }
 // int     figure_out(int **res)
