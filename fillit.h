@@ -22,4 +22,7 @@ typedef	struct		s_tetra
 	struct s_tetra	*next;
 }					t_tetra;
 
+int     ft_checkstr(char *str);
+int    ft_checkv(char **tmp);
+
 #endif

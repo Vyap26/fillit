@@ -12,52 +12,6 @@
 
 #include "fillit.h"
 
-int     ft_checkstr(char *str)
-{
-    int i;
-    int flag;
-
-    i = 0;
-    flag = 0;
-    if (ft_strlen(str) != 4 || !str)
-        {
-            ft_putstr("ошибка\n");
-            return (-1);
-        }
-    while ((str[i] == '.' || str[i] == '#') && (str[i] != '\0'))
-    {
-        if (str[i] == '#' && flag == 0)
-                flag = 1;
-        else if (str[i] != '#' && flag == 1)
-                flag = 2;
-        if (str[i] == '#' && flag == 2)
-            {
-                ft_putstr("ошибка\n");
-                return (-1);
-            }
-        if (i == 3 && flag == 0)
-            flag = 1;
-        i++;
-    }
-    if (flag == 1 || flag == 2)
-        {
-            ft_putstr("срока проверена успешно!\n");
-            return (0);
-        }
-    ft_putstr("ошибка\n");
-    return (-1);
-}
-// int     figure_out(int **res)
-// {
-//     int i;
-//     int j;
-
-//     while (j < 4)
-//     {
-        
-//     }
-// }
-
 char    *ft_fillit(int fd)
 {
     int ret;
@@ -65,33 +19,24 @@ char    *ft_fillit(int fd)
     char *tmp[4];
     int fig;
     int i;
-    int c;
-
+    
     ret = get_next_line(fd, &line);
     i = 0;
-    c = 0;
     while (ret > 0)
     {
-        ft_putstr("проверка строки...\n");
-        c = ft_checkstr(line); //checking the srting for false symbols and it's repeating
-        //it will return 0 if the string content only allowed symbols in correct order
-        if (c == -1)
-            return ("error");
-        else
-            tmp[i] = ft_strdup(line);//filling array with checked strings
-        ft_putstr(tmp[i]);
-        ft_putchar('\n');
+        tmp[i] = ft_strdup(line);//filling array with checked strings
         i++;
         if (i == 4)
         {
+            if (ft_checkv(tmp) == -1)
+                return ("tetrimino error\n");
             fig = 0;//figure_out(tmp);//decode the array to it's contains figure
             i = 0;
             //here will be a function that put the figure to array
             //free the tmp
-            ft_putnbr(ret = get_next_line(fd, &line));//get next line
-            ft_putchar('\n'); 
-            if (!(line == '\0') && ret != 0) // if i==4 && (line[0] != '\0' && ret == 0) mean an error
-                return ("error");
+            //ft_putchar('\n'); 
+            if (get_next_line(fd, &line) == 1 && *line != '\0') // if i==4 && (line[0] != '\0' && ret == 0) mean an error
+                return ("file error\n");
         }
         free(line);
         if (ret != 0)
