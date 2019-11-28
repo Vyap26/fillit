@@ -44,6 +44,84 @@ t_tetra	*new_tetra(char *nam)
 	return (new);
 }
 
+t_tetra *fill_mass()
+{
+	static t_tetra	*mass;
+	t_tetra			*temp;
+	t_tetra			*abr;
+	int 			count;
+	char 			*all;
+	char 			*name1;
+	char 			*name2;
+	char			*name3;
+
+	name1 = "a_1";
+	name2 = "a_2";
+	name3 = "b_1";
+		count = 0;
+	if (mass == NULL)
+		mass = new_tetra(name1);
+	temp = mass;
+
+	temp->img = "#\n#\n#\n#\n";
+	temp->num = 0;
+	printf("%s\n", temp->name);
+	printf("%s\n", temp->img);
+	temp->next = new_tetra(name2);
+	temp = temp->next;
+	temp->img = "####\n";
+	temp->num = 0;
+	printf("%s\n", temp->name);
+	printf("%s\n", temp->img);
+	temp->next = new_tetra(name3);
+	temp = temp->next;
+	temp->img = "##\n#.\n#.\n";
+	temp->num = 0;
+	printf("%s\n", temp->name);
+	printf("%s\n", temp->img);
+	printf("%s\n", mass->img);
+
+	abr = mass;
+	while (ft_strcmp(abr->name, name2) != 0)
+		abr = abr->next;
+	abr->num = abr->num + 1;
+	printf("%s\n", abr->name);
+	printf("%s\n", abr->img);
+	printf("%d\n", abr->num);
+	return (mass);
+
+}
+//	mass[0, 1]++;
+// mass[x, y]
+//x++, y++
+//if abr->img == nashla() //тут мы ищем совпадение
+//	return abr->name; //возвращаем имя фигуры совпавшей
+//
+//void	num_plus(*imya) //сюда это имя совпавшее загоняем и прибавляем кол-во фигур в списке
+//{
+//	while (ft_strcmp(abr->img, imya) != 0)
+//		abr = abr->next;
+//	abr->num = abr->num + 1;
+//}
+//
+//t_tetra			*abc;
+//
+
+//abc = mass; // Определения самой здоровой фиггуры
+//while (abc->next)
+//
+//if (abc->num < 1)
+//	abc = abc->next;
+//else
+//	if (abc->name[0] == 'a')
+//		выделить 4 на 4;
+//	else if (abc->name[0] != 'd')
+//	выделить 3 на 3;
+//	else
+//		выделить 2 на 2;
+//
+
+
 int		draw_img(char *line)
 {
 	char	*a_1;
@@ -145,6 +223,7 @@ int		main()
 	draw_img3(palka);
 	draw_img4(palka);
 	draw_img5(palka);
+//	fill_mass();
 	return (0);
 }
 /*
