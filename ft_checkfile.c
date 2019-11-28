@@ -83,7 +83,7 @@ void    ft_cutrow(char **tmp)
 
 void    ft_cutcol(char **tmp)
 {
-    int i,j;
+    int i,j, t;
 
     i = 0;
     j = 0;
@@ -92,10 +92,20 @@ void    ft_cutcol(char **tmp)
         if (tmp[0][j] != '#' && tmp[1][j] != '#' && tmp[2][j] != '#' && 
         tmp[3][j] != '#')
         {
-            while (i < 4 && j < 1)
+            ft_putstr("col found\n");
+            t = j;
+            while (j < 3)
             {
+                ft_putstr("col moved -1\n");
                 tmp[i][j] = tmp[i][j + 1];
-                i++;
+                j++;
+                if (j == 3 && t != 3)
+                {
+                    ft_putstr("last col str del\n");
+                    tmp[i][3 - j] = '\0';
+                    j = t;
+                    i++;
+                }    
             }
             i = 0;
         }
