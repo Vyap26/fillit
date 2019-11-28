@@ -53,7 +53,7 @@ int    ft_checkv(char **tmp)
     }
     return (0);
 }
-void    ft_cutarr(char **tmp)
+void    ft_cutrow(char **tmp)
 {
     int i;
     int k;
@@ -71,13 +71,37 @@ void    ft_cutarr(char **tmp)
                 ft_strcpy(tmp[i], tmp[i + 1]);
                 i++;
             }
-            ft_strcpy(tmp[k], "\0");
+            ft_strclr(tmp[k]);
             i = 3 - k;
             if (strcmp(tmp[i], "...."))
                 k--;
         }
         else
             i++;
+    }
+}
+
+void    ft_cutcol(char **tmp)
+{
+    int i,j;
+
+    i = 0;
+    j = 0;
+    while (j < 3)
+    {
+        if (tmp[0][j] != '#' && tmp[1][j] != '#' && tmp[2][j] != '#' && 
+        tmp[3][j] != '#')
+        {
+            while (i < 4 && j < 1)
+            {
+                tmp[i][j] = tmp[i][j + 1];
+                i++;
+            }
+            i = 0;
+        }
+        else
+            j++;
+        
     }
 }
 
@@ -101,7 +125,8 @@ int ft_checkfile(int fd)
         {
             if (ft_checkv(tmp) == -1)
                 return (-1);
-            ft_cutarr(tmp);
+            ft_cutrow(tmp);
+            ft_cutcol(tmp);
             j = 0;
             while (j < 4)
                 {
