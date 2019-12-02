@@ -57,27 +57,25 @@ void    ft_cutrow(char **tmp)
 {
     int i;
     int k;
+    int t;
 
     i = 0;
     k = 3;
-
-    while (i <= k)
+    while (i < 4)
     {
-        if (ft_strcmp(tmp[i], "....") == 0)
+        t = i;
+        while (ft_strcmp(tmp[t], "....") == 0)
         {
             ft_putstr ("found spare\n"); 
-            while (i < k)
+            while (t < k)
             {
-                ft_strcpy(tmp[i], tmp[i + 1]);
-                i++;
+                ft_strcpy(tmp[t], tmp[t + 1]);
+                t++;
             }
-            ft_strclr(tmp[k]);
-            i = 3 - k;
-            if (strcmp(tmp[i], "...."))
-                k--;
+            t = i;
+            ft_strclr(tmp[k--]);
         }
-        else
-            i++;
+        i++;
     }
 }
 
@@ -87,31 +85,35 @@ void    ft_cutcol(char **tmp)
 
     i = 0;
     j = 0;
-    while (j < 3)
+    while (j < 4)
     {
+        if (tmp[0][j] == '\0' && tmp[1][j] == '\0' && tmp[2][j] == '\0' &&
+        tmp[3][j] == '\0')
+            break;
         if (tmp[0][j] != '#' && tmp[1][j] != '#' && tmp[2][j] != '#' && 
         tmp[3][j] != '#')
         {
             ft_putstr("col found\n");
             t = j;
-            while (j < 3)
+            while (i < 4)
             {
-                ft_putstr("col moved -1\n");
-                tmp[i][j] = tmp[i][j + 1];
-                j++;
-                if (j == 3 && t != 3)
+                if (t < 3)
                 {
-                    ft_putstr("last col str del\n");
-                    tmp[i][3 - j] = '\0';
-                    j = t;
+                    tmp[i][t] = tmp[i][t + 1];
+                    t++;
+                }
+
+                if (t == 3)
+                {
+                    tmp[i][t] = '\0';
                     i++;
+                    t = j;
                 }    
             }
             i = 0;
         }
         else
             j++;
-        
     }
 }
 
@@ -136,6 +138,13 @@ int ft_checkfile(int fd)
             if (ft_checkv(tmp) == -1)
                 return (-1);
             ft_cutrow(tmp);
+            j = 0;
+            while (j < 4)
+                {
+                    ft_putstr(tmp[j]);
+                    ft_putchar('\n');
+                    j++;
+                }
             ft_cutcol(tmp);
             j = 0;
             while (j < 4)
