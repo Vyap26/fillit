@@ -65,8 +65,7 @@ void    ft_cutrow(char **tmp)
     {
         t = i;
         while (ft_strcmp(tmp[t], "....") == 0)
-        {
-            ft_putstr ("found spare\n"); 
+        { 
             while (t < k)
             {
                 ft_strcpy(tmp[t], tmp[t + 1]);
@@ -93,7 +92,6 @@ void    ft_cutcol(char **tmp)
         if (tmp[0][j] != '#' && tmp[1][j] != '#' && tmp[2][j] != '#' && 
         tmp[3][j] != '#')
         {
-            ft_putstr("col found\n");
             t = j;
             while (i < 4)
             {
@@ -122,7 +120,7 @@ int ft_checkfile(int fd)
     int ret;
     char *line;
     char *tmp[4];
-    char *res;
+    char res[10];
     int fig;
     int i;
     int j;
@@ -138,21 +136,11 @@ int ft_checkfile(int fd)
             if (ft_checkv(tmp) == -1)
                 return (-1);
             ft_cutrow(tmp);
-            j = 0;
-            while (j < 4)
-                {
-                    ft_putstr(tmp[j]);
-                    ft_putchar('\n');
-                    j++;
-                }
             ft_cutcol(tmp);
-            j = 0;
-            while (j < 4)
-                {
-                    ft_putstr(tmp[j]);
-                    ft_putchar('\n');
-                    j++;
-                }
+            ft_putimg(tmp, res);
+            ft_putstr(res);
+            ft_putchar('\n');
+            //ft_putchar('\n');
             fig =  0;//figure_out(tmp);//decode the array to it's contains figure
             i = 0;
             //here will be a function that put the figure to array
