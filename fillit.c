@@ -14,8 +14,19 @@
 
 char    *ft_fillit(int fd)
 {
-    if (ft_checkfile(fd) == -1)
-        return ("error\n");    
+    t_tetra *smpl;
+
+      
+    smpl = ft_filllst();
+    if (ft_checkfile(fd, smpl) == -1)
+        return ("error\n");
+    while (smpl)
+    {
+        printf("%s\n", smpl->name);
+        printf("%s\n", smpl->img);
+        printf("%d\n", smpl->num);
+        smpl = smpl-> next;
+    }  
     // else создание файла и заполнение
     return ("ok\n");
 }

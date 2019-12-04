@@ -12,17 +12,15 @@ void    ft_putimg(char **tmp, char *str)
     while (i < 4)
     {
         if (tmp[i][j] == '.' || tmp[i][j] == '#')
-        {
-            str[s] = tmp[i][j];
-            s++;
-            j++;
-        }
+            str[s++] = tmp[i][j++];
         else
             j++;  
         if (j == 3)
         {
-            str[s] = '\n';
-            s++;
+            if (tmp[i][j] == '.' || tmp[i][j] == '#')//
+                str[s++] = tmp[i][j];//add to fix cut
+            str[s++] = '\\';//change
+            str[s++] = 'n';//add
             i++;
             j = 0;
         }
@@ -32,7 +30,19 @@ void    ft_putimg(char **tmp, char *str)
     str[s] = '\0';
 }
 
-t_tetra ft_filllst(char *str)
+t_tetra	*new_tetra(char *nam)
+{
+	t_tetra	*new;
+
+	new = (t_tetra *)malloc(sizeof(t_tetra));
+	new->name = nam;
+	new->img = NULL;
+	new->num = 0;
+	new->next = NULL;
+	return (new);
+}
+
+t_tetra *ft_filllst()
 {
     static t_tetra *fllt;
     t_tetra *temp;
@@ -40,23 +50,37 @@ t_tetra ft_filllst(char *str)
     int res;
     char *buf;
 
-    fillt = (t_tetra *)malloc(sizeof(t_tetra));
+    fllt = new_tetra("a_1");
+    temp = fllt;
     fd = open("samples.txt", O_RDONLY);
     res = get_next_line(fd, &buf);
     while (res > 0)
     {
-        fill -> name = (ft_strdup(buf));
+        temp -> name = (ft_strdup(buf));
         res = get_next_line(fd, &buf);
         if(res <= 0)
             break ;
-        fill -> img = (ft_strdup(buf));
+        temp -> img = (ft_strdup(buf));
         ft_strclr(buf);
         res = get_next_line(fd, &buf);
         if(res <= 0)
             break ;
-        
-        fill -> next = new_tetra;
+        temp -> next = new_tetra("");
+        temp = temp -> next;
     }
-
-
+    return (fllt);
+}
+int ft_compare(char *str, t_tetra *smpl)
+{
+    while (ft_strcmp(smpl->img, str) != 0)
+		{
+            ft_putstr("scan...\n");
+            printf("%s\n", smpl->img);
+            smpl = smpl->next;
+            if (smpl == NULL)
+                return (-1);
+        }
+    smpl->num = smpl->num + 1;
+    ft_putstr("match!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    return (0);
 }

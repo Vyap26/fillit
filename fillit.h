@@ -24,7 +24,9 @@ typedef	struct		s_tetra
 
 int	ft_checkstr(char *str);
 int	ft_checkv(char **tmp);
-int	ft_checkfile(int fd);
+int	ft_checkfile(int fd, t_tetra *smpl);
 void	ft_putimg(char **tmp, char *res);
+t_tetra	*ft_filllst();
+int	ft_compare(char *str, t_tetra *smpl);
 
 #endif

@@ -115,15 +115,13 @@ void    ft_cutcol(char **tmp)
     }
 }
 
-int ft_checkfile(int fd)
+int ft_checkfile(int fd, t_tetra *smpl)
 {
     int ret;
     char *line;
     char *tmp[4];
-    char res[10];
-    int fig;
+    char res[20];
     int i;
-    int j;
 
     ret = get_next_line(fd, &line);
     i = 0;
@@ -138,21 +136,21 @@ int ft_checkfile(int fd)
             ft_cutrow(tmp);
             ft_cutcol(tmp);
             ft_putimg(tmp, res);
+            ft_putstr("searching tetraminka:\n");
             ft_putstr(res);
-            ft_putchar('\n');
-            //ft_putchar('\n');
-            fig =  0;//figure_out(tmp);//decode the array to it's contains figure
-            i = 0;
-            //here will be a function that put the figure to array
-            //free the tmp
-            //ft_putchar('\n'); 
+            ft_putstr("\n\n");
+            if (ft_compare(res, smpl) != 0)
+                return (-1);
             if (get_next_line(fd, &line) == 1 && *line != '\0') // if i==4 && (line[0] != '\0' && ret == 0) mean an error
                 return (-1);
+            i = 0;
         }
         free(line);
         if (ret != 0)
             ret = get_next_line(fd, &line);
     }
+    
+
     return (0);
 }
 // int     figure_out(int **res)
