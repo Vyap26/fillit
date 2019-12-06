@@ -100,7 +100,6 @@ void    ft_cutcol(char **tmp)
                     tmp[i][t] = tmp[i][t + 1];
                     t++;
                 }
-
                 if (t == 3)
                 {
                     tmp[i][t] = '\0';
@@ -127,21 +126,21 @@ int ft_checkfile(int fd, t_tetra *smpl)
     i = 0;
     while (ret > 0)
     {
-        tmp[i] = ft_strdup(line);//filling array with checked strings
+        tmp[i] = ft_strdup(line);//построно заполняем массив
         i++;
         if (i == 4)
         {
-            if (ft_checkv(tmp) == -1)
+            if (ft_checkv(tmp) == -1)// проверка по строкам
                 return (-1);
-            ft_cutrow(tmp);
-            ft_cutcol(tmp);
-            ft_putimg(tmp, res);
+            ft_cutrow(tmp);//обрезка пустых ("....") строк
+            ft_cutcol(tmp);// обрезка пустых столбцов
+            ft_putimg(tmp, res);// кладем полуившиуюся картинку в строку
             ft_putstr("searching tetraminka:\n");
             ft_putstr(res);
             ft_putstr("\n\n");
-            if (ft_compare(res, smpl) != 0)
+            if (ft_compare(res, smpl) != 0)// сравниваем результат с образцом
                 return (-1);
-            if (get_next_line(fd, &line) == 1 && *line != '\0') // if i==4 && (line[0] != '\0' && ret == 0) mean an error
+            if (get_next_line(fd, &line) == 1 && *line != '\0') // проверяем следующую строку
                 return (-1);
             i = 0;
         }
@@ -149,17 +148,5 @@ int ft_checkfile(int fd, t_tetra *smpl)
         if (ret != 0)
             ret = get_next_line(fd, &line);
     }
-    
-
     return (0);
 }
-// int     figure_out(int **res)
-// {
-//     int i;
-//     int j;
-
-//     while (j < 4)
-//     {
-        
-//     }
-// }

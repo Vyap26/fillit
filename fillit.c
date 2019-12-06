@@ -15,10 +15,9 @@
 char    *ft_fillit(int fd)
 {
     t_tetra *smpl;
-
       
-    smpl = ft_filllst();
-    if (ft_checkfile(fd, smpl) == -1)
+    smpl = ft_filllst();// заполняем лист образцами
+    if (ft_checkfile(fd, smpl) == -1)// проверка, сравнение и заполнение листа с образцами
         return ("error\n");
     while (smpl)
     {
@@ -28,6 +27,7 @@ char    *ft_fillit(int fd)
         smpl = smpl-> next;
     }  
     // else создание файла и заполнение
+    // free smpl
     return ("ok\n");
 }
 

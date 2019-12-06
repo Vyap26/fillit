@@ -17,10 +17,10 @@ void    ft_putimg(char **tmp, char *str)
             j++;  
         if (j == 3)
         {
-            if (tmp[i][j] == '.' || tmp[i][j] == '#')//
-                str[s++] = tmp[i][j];//add to fix cut
-            str[s++] = '\\';//change
-            str[s++] = 'n';//add
+            if (tmp[i][j] == '.' || tmp[i][j] == '#')
+                str[s++] = tmp[i][j];
+            str[s++] = '\\';
+            str[s++] = 'n';
             i++;
             j = 0;
         }
@@ -58,12 +58,12 @@ t_tetra *ft_filllst()
     {
         temp -> name = (ft_strdup(buf));
         res = get_next_line(fd, &buf);
-        if(res <= 0)
+        if (res <= 0)
             break ;
         temp -> img = (ft_strdup(buf));
         ft_strclr(buf);
         res = get_next_line(fd, &buf);
-        if(res <= 0)
+        if (res <= 0)
             break ;
         temp -> next = new_tetra("");
         temp = temp -> next;
