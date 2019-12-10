@@ -133,18 +133,17 @@ void	ft_cutcol(char **tmp)
 
 int		ft_checkfile(int fd, t_tetra *smpl)
 {
-    int ret;
-    char *line;
-    char *tmp[4];
-    char res[20];
-    int i;
+	int		i;
+    int		ret;
+    char	*line;
+    char	*tmp[4];
+    char	res[20];
 
     ret = get_next_line(fd, &line);
     i = 0;
     while (ret > 0)
     {
-        tmp[i] = ft_strdup(line);//построно заполняем массив
-        i++;
+        tmp[i++] = ft_strdup(line);//построно заполняем массив
         if (i == 4)
         {
             if (ft_checkv(tmp) == -1)// проверка по строкам
@@ -156,7 +155,7 @@ int		ft_checkfile(int fd, t_tetra *smpl)
             ft_putstr(res);
             ft_putstr("\n\n");
             if ((ft_compare(res, smpl) != 0) || (get_next_line(fd, &line) == 1 
-						&& *line != '\0'))// сравниваем результат с образцом and check next line
+						&& *line != '\0'))// compare res & sample and check next line
                 return (-1);
             i = 0;
         }
