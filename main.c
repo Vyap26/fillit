@@ -326,3 +326,78 @@ char	*ready_pole(char *pole, t_tetra *mass)
 
 */
 
+typedef struct	s_point
+{
+	int 		x;
+	int 		y;
+}				t_point;
+
+int	getmin(t_point *sharps.x)
+{
+	int 	count;
+	int 	min;
+	t_point	*temp;
+
+	count = 0;
+	temp = sharps;
+	min = temp[count].x;
+	count++;
+	while (count < 4)
+	{
+		if (min > temp[count].x)
+	{
+		min = temp[count].x;
+		count++;
+	}
+	}
+	return (min);
+}
+
+t_point	*optimize_sharps(t_point *sharps)
+{
+	t_point	*temp;
+	int 	count;
+	int		min;
+
+	temp = sharps;
+	min = getmin(*sharps.x);
+	count = 0;
+	while (count < 4)
+	{
+		temp[count].x = temp[count].x - min;
+		count++;
+	}
+	min = getmin(*sharps.y);
+	count = 0;
+	while (count < 4)
+	{
+		temp[count].y = temp[count].y - min;
+		count++;
+	}
+	return (temp);
+}
+
+t_point	*get_sharps(char *data)
+{
+	t_point	*sharps;
+	int 	sharp;
+	int 	i;
+
+	sharp = 0;
+	i = 0;
+	sharps = (t_point*)malloc(sizeof(t_point) * 4);
+	while (i < 20)
+	{
+		if (data[i] == '#')
+		{
+			sharps[sharp].x = i % 5;
+			sharps[sharp].y = i / 5;
+			sharp++;
+		}
+		i++;
+	}
+	sharps = optmize_sharps(sharps);
+	return  (sharps);
+}
+
+
