@@ -22,6 +22,12 @@ typedef	struct		s_tetra
 	struct s_tetra	*next;
 }					t_tetra;
 
+typedef struct	s_point
+{
+	int 		x;
+	int 		y;
+}				t_point;
+
 int	ft_checkstr(char *str);
 int	ft_checkv(char **tmp);
 int	ft_checkfile(int fd, t_tetra *smpl);
