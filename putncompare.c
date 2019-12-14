@@ -81,6 +81,7 @@ int ft_compare(char *str, t_tetra *smpl)
                 return (-1);
         }
     smpl->num = smpl->num + 1;
+    ФУНКЦИЯ МОЯ ЛЮБИМАЯ! где надо положить smpl->img с нормальными \n
     ft_putstr("match!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     return (0);
 }
