@@ -13,6 +13,8 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "libft/libft.h"
+# define NUMBER_OF_STRING 19
+# define MAX_STRING_SIZE 11
 
 typedef	struct		s_tetra
 {
@@ -20,6 +22,7 @@ typedef	struct		s_tetra
 	char			*img;
 	int				num;
 	struct s_tetra	*next;
+	
 }					t_tetra;
 
 typedef struct	s_point
@@ -30,9 +33,8 @@ typedef struct	s_point
 
 int	ft_checkstr(char *str);
 int	ft_checkv(char **tmp);
-int	ft_checkfile(int fd, t_tetra *smpl);
+int	ft_checkfile(int fd);
 void	ft_putimg(char **tmp, char *res);
-t_tetra	*ft_filllst();
-int	ft_compare(char *str, t_tetra *smpl);
+int	ft_compare(char *str);
 
 #endif

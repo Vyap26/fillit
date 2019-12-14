@@ -19,8 +19,8 @@ void    ft_putimg(char **tmp, char *str)
         {
             if (tmp[i][j] == '.' || tmp[i][j] == '#')
                 str[s++] = tmp[i][j];
-            str[s++] = '\\';
-            str[s++] = 'n';
+            str[s++] = '\n';
+            //str[s++] = 'n';
             i++;
             j = 0;
         }
@@ -30,58 +30,47 @@ void    ft_putimg(char **tmp, char *str)
     str[s] = '\0';
 }
 
-t_tetra	*new_tetra(char *nam)
+char    *initialiser(int i)
 {
-	t_tetra	*new;
+    char *arr[NUMBER_OF_STRING];
 
-	new = (t_tetra *)malloc(sizeof(t_tetra));
-	new->name = nam;
-	new->img = NULL;
-	new->num = 0;
-	new->next = NULL;
-	return (new);
+    arr[0] = "#\n#\n#\n#\n";
+    arr[1] = "####\n";
+    arr[2] = "##\n#.\n#.\n";
+    arr[3] =  "##\n.#\n.#\n";
+    arr[4] = "#.\n#.\n##\n";
+    arr[5] = ".#\n.#\n##\n";
+    arr[6] = "#..\n###\n";
+    arr[7] = "..#\n###\n";
+    arr[8]= "###\n..#\n";
+    arr[9] = "###\n#..\n";
+    arr[10] = "##.\n.##\n";
+    arr[11] = ".##\n##.\n";
+    arr[12] = "#.\n##\n.#\n";
+    arr[13] = ".#\n##\n#.\n";
+    arr[14] = ".#\n##\n.#\n";
+    arr[15] = "#.\n##\n#.\n";
+    arr[16] = "###\n.#.\n";
+    arr[17] = ".#.\n###\n";
+    arr[18] = "##\n##\n";
+
+    return (arr[i]);
 }
 
-t_tetra *ft_filllst()
+int ft_compare(char *str)
 {
-    static t_tetra *fllt;
-    t_tetra *temp;
-    int fd;
-    int res;
-    char *buf;
+    int i;
 
-    fllt = new_tetra("a_1");
-    temp = fllt;
-    fd = open("samples.txt", O_RDONLY);
-    res = get_next_line(fd, &buf);
-    while (res > 0)
-    {
-        temp -> name = (ft_strdup(buf));
-        res = get_next_line(fd, &buf);
-        if (res <= 0)
-            break ;
-        temp -> img = (ft_strdup(buf));
-        ft_strclr(buf);
-        res = get_next_line(fd, &buf);
-        if (res <= 0)
-            break ;
-        temp -> next = new_tetra("");
-        temp = temp -> next;
-    }
-    return (fllt);
-}
-int ft_compare(char *str, t_tetra *smpl)
-{
-    while (ft_strcmp(smpl->img, str) != 0)
+    i = 0;
+    while (ft_strcmp(initialiser(i), str) != 0)
 		{
             ft_putstr("scan...\n");
-            printf("%s\n", smpl->img);
-            smpl = smpl->next;
-            if (smpl == NULL)
+            printf("%s\n", str);
+            i++;
+            if (i == 20)
                 return (-1);
         }
-    smpl->num = smpl->num + 1;
-    ФУНКЦИЯ МОЯ ЛЮБИМАЯ! где надо положить smpl->img с нормальными \n
+    //ФУНКЦИЯ МОЯ ЛЮБИМАЯ! где надо положить smpl->img с нормальными \n
     ft_putstr("match!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     return (0);
 }

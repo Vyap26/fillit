@@ -14,18 +14,8 @@
 
 char    *ft_fillit(int fd)
 {
-    t_tetra *smpl;
-      
-    smpl = ft_filllst();// заполняем лист образцами
-    if (ft_checkfile(fd, smpl) == -1)// проверка, сравнение и заполнение листа с образцами
+    if (ft_checkfile(fd) == -1)// проверка, сравнение с образцами
         return ("error\n");
-    while (smpl)
-    {
-        printf("%s\n", smpl->name);
-        printf("%s\n", smpl->img);
-        printf("%d\n", smpl->num);
-        smpl = smpl-> next;
-    }  
     // else создание файла и заполнение
     // free smpl
     return ("ok\n");

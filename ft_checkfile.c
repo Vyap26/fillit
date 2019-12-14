@@ -131,7 +131,7 @@ void	ft_cutcol(char **tmp)
 	}
 }
 
-int		ft_checkfile(int fd, t_tetra *smpl)
+int		ft_checkfile(int fd)
 {
 	int		i;
     int		ret;
@@ -154,7 +154,7 @@ int		ft_checkfile(int fd, t_tetra *smpl)
             ft_putstr("searching tetraminka:\n");
             ft_putstr(res);
             ft_putstr("\n\n");
-            if ((ft_compare(res, smpl) != 0) || (get_next_line(fd, &line) == 1 
+            if ((ft_compare(res) != 0) || (get_next_line(fd, &line) == 1 
 						&& *line != '\0'))// compare res & sample and check next line
                 return (-1);
             i = 0;
