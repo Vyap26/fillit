@@ -13,24 +13,30 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "libft/libft.h"
-# define NUMBER_OF_STRING 19
-# define MAX_STRING_SIZE 11
-
-typedef	struct		s_tetra
-{
-	char 			*name;
-	char			*img;
-	int				num;
-	struct s_tetra	*next;
-	
-}					t_tetra;
 
 typedef struct	s_point
 {
-	int 		x;
-	int 		y;
-}				t_point;
+	int 			x;
+	int 			y;
+}					t_point;
 
+typedef	struct		s_kvad
+{
+	char			name;
+	struct s_kvad	*next;
+	t_point			*tetri;
+}					t_kvad;
+
+typedef struct	s_map
+{
+	int 			size;
+	char 			**map;
+}					t_map;
+
+int	getmin(int a, int b, int c, int d);
+t_point	*optimize_sharps(t_point *sharps);
+t_point	*get_sharps(char *data);
+t_point	*figure();
 int	ft_checkstr(char *str);
 int	ft_checkv(char **tmp);
 int	ft_checkfile(int fd);
