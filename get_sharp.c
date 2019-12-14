@@ -50,6 +50,37 @@ t_point	*optimize_sharps(t_point *sharps)
 	return (temp);
 }
 
+t_point	*get_sharps2(char *temp)
+{
+	t_point	*sharps;
+	int i;
+	int g;
+	int k;
+
+	g = 0;
+	i = 0;
+	k = 0;
+	while (temp)
+	{
+		if (temp[i] == '#')
+		{
+			sharps[sharp].x = k;
+			sharps[sharp].y = g;
+			sharp++;
+		}
+		if (temp[i] == '\n')
+		{
+			g++;
+			k = 0;
+		}
+		k++;
+		i++;
+	}
+	return (sharps);
+}
+
+
+
 t_point	*get_sharps(char *data)
 {
 	t_point	*sharps;
@@ -73,12 +104,14 @@ t_point	*get_sharps(char *data)
 	return (sharps);
 }
 
-int		main()
+t_point	*figure()
 {
 	char	*a;
 	t_point	*f;
 
-	a = "..#.\n..#.\n.#..\n.#..\n";
+	a = "..#.\n.##.\n.#..\n....\n";
+	printf("%s\n", a);
 	f = get_sharps(a);
-	return (0);
+	return (f);
 }
+//##..\n#...\n#...\n....\n
