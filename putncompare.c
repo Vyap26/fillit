@@ -32,7 +32,7 @@ void    ft_putimg(char **tmp, char *str)
 
 char    *initialiser(int i)
 {
-    char *arr[NUMBER_OF_STRING];
+    char *arr[19];
 
     arr[0] = "#\n#\n#\n#\n";
     arr[1] = "####\n";

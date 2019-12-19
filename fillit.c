@@ -12,22 +12,16 @@
 
 #include "fillit.h"
 
-char    *ft_fillit(int fd)
-{
-    if (ft_checkfile(fd) == -1)// проверка, сравнение с образцами
-        return ("error\n");
-    // else создание файла и заполнение
-    // free smpl
-    return ("ok\n");
-}
-
 int    main(void)
 {
     char    *res;
     int     fd;
+    t_kvad *all;
 
     fd = open("test.txt", O_RDONLY);
-    res = ft_fillit(fd);
+    if (ft_checkfile(fd, &all) != 0)// проверка, сравнение с образцами
+        res = "error\n";
+    
     if (res)
         ft_putstr(res);
     fd = close(fd);

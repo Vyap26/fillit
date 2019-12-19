@@ -33,14 +33,15 @@ typedef struct	s_map
 	char 			**map;
 }					t_map;
 
-int	getmin(int a, int b, int c, int d);
+int		getmin(int a, int b, int c, int d);
 t_point	*optimize_sharps(t_point *sharps);
 t_point	*get_sharps(char *data);
 t_point	*figure();
-int	ft_checkstr(char *str);
-int	ft_checkv(char **tmp);
-int	ft_checkfile(int fd);
+int		ft_checkstr(char *str);
+int		ft_checkv(char **tmp);
+int		ft_checktetra(char **tmp, char *res, int fd, char **line);
+int		ft_checkfile(int fd, t_kvad *all);
 void	ft_putimg(char **tmp, char *res);
-int	ft_compare(char *str);
+int		ft_compare(char *str);
 
 #endif
