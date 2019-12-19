@@ -33,15 +33,33 @@ typedef struct	s_map
 	char 			**map;
 }					t_map;
 
+int 	in_range(t_kvad *kvad, t_point *pos, int size);
+int 	place_kvad(t_map *map, t_point *pos, t_kvad *kvad);
+int 	free_n_return(t_point *pos);
+void	clear_last(t_map *map, t_point *pos, t_kvad *kvad);
+int 	solve_map(t_map *map, t_kvad *kvad);
+int 	get_map_size(t_kvad *kvad);
+t_map	*fill_map(t_map *map);
+void	delete_map(t_map *map);
+t_map	*generate_map(int size);
+void	print_map(t_map *map);
+int		get_solution(t_map *map, t_kvad *kvad);
+void	solve(t_kvad *kvad);
+t_kvad	*new_kvad(t_kvad *kvad, t_point *sharps, char name);
+void	delete_kvad(t_kvad *kvad);
+t_kvad	*rest(t_kvad *kvad, t_point *sharps);
+t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps);
+t_kvad	*get_tetri(char *str);
+t_point	*get_sharps2(char *temp);
 int		getmin(int a, int b, int c, int d);
 t_point	*optimize_sharps(t_point *sharps);
 t_point	*get_sharps(char *data);
 t_point	*figure();
 int		ft_checkstr(char *str);
 int		ft_checkv(char **tmp);
-int		ft_checktetra(char **tmp, char *res, int fd, char **line);
-int		ft_checkfile(int fd, t_kvad *all);
 void	ft_putimg(char **tmp, char *res);
 int		ft_compare(char *str);
+int		ft_checktetra(char **tmp, char *res, int fd, char **line);
+int		ft_checkfile(int fd, t_kvad *all);
 
 #endif
