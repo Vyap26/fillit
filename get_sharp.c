@@ -1,4 +1,4 @@
-/************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_sharp.c                                        :+:      :+:    :+:   */
@@ -12,9 +12,9 @@
 
 #include "fillit.h"
 
-int	getmin(int a, int b, int c, int d)
+int			getmin(int a, int b, int c, int d)
 {
-	int min;
+	int		min;
 
 	min = a;
 	if (min > b)
@@ -26,10 +26,10 @@ int	getmin(int a, int b, int c, int d)
 	return (min);
 }
 
-t_point	*optimize_sharps(t_point *sharps)
+t_point		*optimize_sharps(t_point *sharps)
 {
 	t_point	*temp;
-	int 	count;
+	int		count;
 	int		min;
 
 	temp = sharps;
@@ -50,42 +50,41 @@ t_point	*optimize_sharps(t_point *sharps)
 	return (temp);
 }
 
-t_point	*get_sharps2(char *temp)
+t_point		*get_sharps2(char *temp)
 {
 	t_point	*sharps;
-	int i;
-	int g;
-	int k;
+	int		g;
+	int		k;
+	int 	sharp;
 
+	sharp = 0;
+	sharps = (t_point*)malloc(sizeof(t_point) * 4);
 	g = 0;
-	i = 0;
 	k = 0;
 	while (temp)
 	{
-		if (temp[i] == '#')
+		if (*temp == '#')
 		{
 			sharps[sharp].x = k;
 			sharps[sharp].y = g;
 			sharp++;
 		}
-		if (temp[i] == '\n')
+		if (*temp == '\n')
 		{
 			g++;
 			k = 0;
 		}
 		k++;
-		i++;
+		temp++;
 	}
 	return (sharps);
 }
 
-
-
-t_point	*get_sharps(char *data)
+t_point		*get_sharps(char *data)
 {
 	t_point	*sharps;
-	int 	sharp;
-	int 	i;
+	int		sharp;
+	int		i;
 
 	sharp = 0;
 	i = 0;
@@ -104,14 +103,13 @@ t_point	*get_sharps(char *data)
 	return (sharps);
 }
 
-t_point	*figure()
-{
-	char	*a;
-	t_point	*f;
-
-	a = "..#.\n.##.\n.#..\n....\n";
-	printf("%s\n", a);
-	f = get_sharps(a);
-	return (f);
-}
-//##..\n#...\n#...\n....\n
+//t_point		*figure()
+//{
+//	char	*a;
+//	t_point	*f;
+//
+//	a = "..#.\n.##.\n.#..\n....\n";
+//	printf("%s\n", a);
+//	f = get_sharps(a);
+//	return (f);
+//}

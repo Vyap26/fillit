@@ -18,7 +18,7 @@ t_kvad	*new_kvad(t_kvad *kvad, t_point *sharps, char name) //создает 1 э
 	kvad->name = name;
 	kvad->next = NULL;
 	kvad->tetri = sharps;
-	return (new);
+	return (kvad);
 }
 
 void	delete_kvad(t_kvad *kvad)
@@ -72,39 +72,14 @@ t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps)
 	return (kvad);
 }
 
-t_kvad ft_compare(char *str, t_tetra *smpl) //???
+t_kvad *get_tetri(char *str)
 {
 	t_point	*sharps;
 	t_kvad	*all;
 
 	all = NULL;
 	sharps = NULL;
-//	while (ft_strcmp(smpl->img, str) != 0)
-//	{
-//		ft_putstr("scan...\n");
-//		printf("%s\n", smpl->img);
-//		smpl = smpl->next;
-//		if (smpl == NULL)
-//			return (-1);
-//	}
-//	smpl->num = smpl->num + 1;
-
-	sharps = get_sharps2(smpl->img);
+	sharps = get_sharps2(str);
 	all = save_kvad(all, sharps);
-
-//	ФУНКЦИЯ МОЯ ЛЮБИМАЯ! где надо положить smpl->img с нормальными \n
-//	ft_putstr("match!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-
 	return (all);
 }
-
-//void	print_kvad(t_kvad *kvad)
-//{
-//	while(kvad)
-//	{
-//
-//
-//	}
-//
-//}
-

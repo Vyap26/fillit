@@ -12,18 +12,33 @@
 
 #include "fillit.h"
 
-int    main(void)
-{
-    char    *res;
-    int     fd;
-    t_kvad *all;
+int    main(int ac, char **av) {
+	char *res;
+	int fd;
+	t_kvad *all;
+	char *a;
+	char *z;
 
-    fd = open("test.txt", O_RDONLY);
-    if (ft_checkfile(fd, &all) != 0)// проверка, сравнение с образцами
-        res = "error\n";
-    
-    if (res)
-        ft_putstr(res);
-    fd = close(fd);
+	z = "AB";
+	a = "truba blat";
+	if (ac != 2)
+	{
+		printf("%s\n", a);
+		return (0);
+	}
+    fd = open(av[1], O_RDONLY);
+	printf("%s\n", a);
+	all = NULL;
+    if ((ft_checkfile(fd, all)) == 0)// проверка, сравнение с образцами
+//		while (all)
+//		{
+//			printf("%s\n", z);
+//			all = all->next;
+//			z++;
+//		}
+    	solve(all);
+//    else
+//    	printf("%s\n", a);
+    close(fd);
     return (0);
 }
