@@ -24,7 +24,7 @@ void    ft_putimg(char **tmp, char *str)
             i++;
             j = 0;
         }
-        if (tmp[i][0] == '\0')
+        else if (tmp[i][0] == '\0')
             break ;
     }
     str[s] = '\0';
