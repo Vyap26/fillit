@@ -61,7 +61,7 @@ t_point		*get_sharps2(char *temp)
 	sharps = (t_point*)malloc(sizeof(t_point) * 4);
 	g = 0;
 	k = 0;
-	while (temp)
+	while (*temp != '\0')
 	{
 		if (*temp == '#')
 		{
