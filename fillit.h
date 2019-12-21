@@ -49,7 +49,7 @@ t_kvad	*new_kvad(t_kvad *kvad, t_point *sharps, char name);
 void	delete_kvad(t_kvad *kvad);
 t_kvad	*rest(t_kvad *kvad, t_point *sharps);
 t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps);
-t_kvad	*get_tetri(char *str);
+t_kvad	*get_tetri(t_kvad *all, char *str);
 t_point	*get_sharps2(char *temp);
 int		getmin(int a, int b, int c, int d);
 t_point	*optimize_sharps(t_point *sharps);
@@ -60,6 +60,6 @@ int		ft_checkv(char **tmp);
 void	ft_putimg(char **tmp, char *res);
 int		ft_compare(char *str);
 int		ft_checktetra(char **tmp, char *res, int fd, char **line);
-int		ft_checkfile(int fd, t_kvad *all);
+t_kvad	*ft_checkfile(int fd, t_kvad *all);
 
 #endif

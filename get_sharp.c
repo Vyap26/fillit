@@ -65,18 +65,25 @@ t_point		*get_sharps2(char *temp)
 	{
 		if (*temp == '#')
 		{
-			sharps[sharp].x = k;
-			sharps[sharp].y = g;
+			sharps[sharp].y = k;
+//			ft_putnbr(sharps[sharp].x);
+			sharps[sharp].x = g;
+//			ft_putnbr(sharps[sharp].y);
 			sharp++;
+			k++;
+			//temp++;
 		}
-		if (*temp == '\n')
+		else if (*temp == '\n')
 		{
 			g++;
 			k = 0;
+			//temp++;
 		}
-		k++;
+		else
+			k++;
 		temp++;
 	}
+//	printf("%c", '\n');
 	return (sharps);
 }
 

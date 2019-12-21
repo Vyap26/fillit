@@ -45,10 +45,10 @@ int 	place_kvad(t_map *map, t_point *pos, t_kvad *kvad) //вписываем т�
 		return (0);
 	if (map->map[kvad->tetri[3].x + pos->x][kvad->tetri[3].y + pos->y] != '.')
 		return (0);
-	map->map[kvad->tetri[0].x + pos->x][kvad->tetri[1].y + pos->y] = kvad->name;
-	map->map[kvad->tetri[1].x + pos->x][kvad->tetri[2].y + pos->y] = kvad->name;
-	map->map[kvad->tetri[2].x + pos->x][kvad->tetri[3].y + pos->y] = kvad->name;
-	map->map[kvad->tetri[3].x + pos->x][kvad->tetri[4].y + pos->y] = kvad->name;
+	map->map[kvad->tetri[0].x + pos->x][kvad->tetri[0].y + pos->y] = kvad->name;
+	map->map[kvad->tetri[1].x + pos->x][kvad->tetri[1].y + pos->y] = kvad->name;
+	map->map[kvad->tetri[2].x + pos->x][kvad->tetri[2].y + pos->y] = kvad->name;
+	map->map[kvad->tetri[3].x + pos->x][kvad->tetri[3].y + pos->y] = kvad->name;
 	return (1);
 }
 
@@ -60,10 +60,10 @@ int 	free_n_return(t_point *pos) // обнуляем бегунок
 
 void	clear_last(t_map *map, t_point *pos, t_kvad *kvad) //возвращаем карте точки
 {
-	map->map[kvad->tetri[0].x + pos->x][kvad->tetri[1].y + pos->y] = '.';
-	map->map[kvad->tetri[1].x + pos->x][kvad->tetri[2].y + pos->y] = '.';
-	map->map[kvad->tetri[2].x + pos->x][kvad->tetri[3].y + pos->y] = '.';
-	map->map[kvad->tetri[3].x + pos->x][kvad->tetri[4].y + pos->y] = '.';
+	map->map[kvad->tetri[0].x + pos->x][kvad->tetri[0].y + pos->y] = '.';
+	map->map[kvad->tetri[1].x + pos->x][kvad->tetri[1].y + pos->y] = '.';
+	map->map[kvad->tetri[2].x + pos->x][kvad->tetri[2].y + pos->y] = '.';
+	map->map[kvad->tetri[3].x + pos->x][kvad->tetri[3].y + pos->y] = '.';
 }
 
 int 	solve_map(t_map *map, t_kvad *kvad) //главная функция решения c рекурсией
@@ -73,11 +73,11 @@ int 	solve_map(t_map *map, t_kvad *kvad) //главная функция реш�
 	if (!kvad)
 		return (1);
 	pos = (t_point*)malloc(sizeof(t_point));
-	pos->y = 0;
-	while (pos->y < map->size)
+	pos->x = 0;
+	while (pos->x < map->size)
 	{
-		pos->x = 0;
-		while (pos->x < map->size)
+		pos->y = 0;
+		while (pos->y < map->size)
 		{
 			if (place_kvad(map, pos, kvad))
 			{
@@ -86,9 +86,9 @@ int 	solve_map(t_map *map, t_kvad *kvad) //главная функция реш�
 				else
 					clear_last(map, pos, kvad);
 			}
-			pos->x++;
+			pos->y++;
 		}
-		pos->y++;
+		pos->x++;
 	}
 	free(pos);
 	return (0);

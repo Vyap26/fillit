@@ -29,14 +29,11 @@ int    main(int ac, char **av) {
     fd = open(av[1], O_RDONLY);
 	printf("%s\n", a);
 	all = NULL;
-    if ((ft_checkfile(fd, all)) == 0)// проверка, сравнение с образцами
-//		while (all)
-//		{
-//			printf("%s\n", z);
-//			all = all->next;
-//			z++;
-//		}
-    	solve(all);
+    all = ft_checkfile(fd, all);
+
+//	if ((ft_checkfile(fd, all)) == 0)
+    solve(all);
+
 //    else
 //    	printf("%s\n", a);
     close(fd);

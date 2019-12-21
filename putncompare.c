@@ -64,13 +64,13 @@ int ft_compare(char *str)
     i = 0;
     while (ft_strcmp(initialiser(i), str) != 0)
 		{
-            ft_putstr("scan...\n");
-            printf("%s\n", str);
+//            ft_putstr("scan...\n");
+//            printf("%s\n", str);
             i++;
             if (i == 20)
                 return (-1);
         }
     //ФУНКЦИЯ МОЯ ЛЮБИМАЯ! где надо положить smpl->img с нормальными \n
-    ft_putstr("match!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+//    ft_putstr("match!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     return (0);
 }

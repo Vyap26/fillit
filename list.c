@@ -72,12 +72,12 @@ t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps)
 	return (kvad);
 }
 
-t_kvad *get_tetri(char *str)
+t_kvad *get_tetri(t_kvad *all, char *str)
 {
 	t_point	*sharps;
-	t_kvad	*all;
 
-	all = NULL;
+//	all = NULL;
+//	all = (t_kvad *)malloc(sizeof(t_kvad));
 	sharps = NULL;
 	sharps = get_sharps2(str);
 	all = save_kvad(all, sharps);

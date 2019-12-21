@@ -128,14 +128,14 @@ void	ft_cutcol(char **tmp)
 			ft_cutc(tmp, i, j);
 		else
 			j++;
-		ft_putstr(tmp[0]);
-		printf("%c",'\n');
-		ft_putstr(tmp[1]);
-		printf("%c",'\n');
-		ft_putstr(tmp[2]);
-		printf("%c",'\n');
-		ft_putstr(tmp[3]);
-		printf("%c",'\n');
+//		ft_putstr(tmp[0]);
+//		printf("%c",'\n');
+//		ft_putstr(tmp[1]);
+//		printf("%c",'\n');
+//		ft_putstr(tmp[2]);
+//		printf("%c",'\n');
+//		ft_putstr(tmp[3]);
+//		printf("%c",'\n');
 	}
 }
 
@@ -154,16 +154,16 @@ int		ft_checktetra(char **tmp, char *res, int fd, char **line)
     ft_cutrow(tmp);//обрезка пустых ("....") строк
     ft_cutcol(tmp);// обрезка пустых столбцов
     ft_putimg(tmp, res);// кладем полуившиуюся картинку в строку
-    ft_putstr("searching tetraminka:\n");
-    ft_putstr(res);
-    ft_putstr("\n\n");
+//    ft_putstr("searching tetraminka:\n");
+//    ft_putstr(res);
+//    ft_putstr("\n\n");
     if ((ft_compare(res) != 0) || (get_next_line(fd, &abr) == 1
-						&& abr != '\0'))// compare res & sample and check next line
+						&& *abr != '\0'))// compare res & sample and check next line
         return (-1);
 	return (0);
 }
 
-int		ft_checkfile(int fd, t_kvad *all)
+t_kvad		*ft_checkfile(int fd, t_kvad *all)
 {
 	int		i;
     int		ret;
@@ -179,8 +179,8 @@ int		ft_checkfile(int fd, t_kvad *all)
         if (i == 4)
         {
             if (ft_checktetra(tmp, res, fd, &line) != 0)
-				return (-1);
-			all = get_tetri(res);
+				return (NULL);
+			all = get_tetri(all, res);
             i = 0;
         }
 		//all = get_tetri(res);
@@ -188,5 +188,5 @@ int		ft_checkfile(int fd, t_kvad *all)
         if (ret != 0)
             ret = get_next_line(fd, &line);
     }
-    return (0);
+    return (all);
 }
