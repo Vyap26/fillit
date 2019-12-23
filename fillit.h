@@ -56,6 +56,8 @@ t_point	*optimize_sharps(t_point *sharps);
 t_point	*get_sharps(char *data);
 t_point	*figure();
 int		ft_checkstr(char *str);
+void	ft_cutrow(char **tmp);
+void	ft_cutcol(char **tmp);
 int		ft_checkv(char **tmp);
 void	ft_putimg(char **tmp, char *res);
 int		ft_compare(char *str);
