@@ -50,7 +50,7 @@ void	delete_kvad(t_kvad *kvad);
 t_kvad	*rest(t_kvad *kvad, t_point *sharps);
 t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps);
 t_kvad	*get_tetri(t_kvad *all, char *str);
-t_point	*get_sharps2(char *temp);
+t_point	*get_sharps2(char *temp, t_point *sharps);
 int		getmin(int a, int b, int c, int d);
 t_point	*optimize_sharps(t_point *sharps);
 t_point	*get_sharps(char *data);

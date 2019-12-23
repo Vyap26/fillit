@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-t_kvad	*new_kvad(t_kvad *kvad, t_point *sharps, char name) //создает 1 элемент и пишет в него шарпс и имя (для головы)
+t_kvad	*new_kvad(t_kvad *kvad, t_point *sharps, char name)
 {
 	kvad = (t_kvad *)malloc(sizeof(t_kvad));
 	kvad->name = name;
@@ -60,7 +60,7 @@ t_kvad	*rest(t_kvad *kvad, t_point *sharps)
 
 t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps)
 {
-	if(!sharps)
+	if (!sharps)
 		delete_kvad(kvad);
 	else if (!kvad)
 	{
@@ -72,14 +72,12 @@ t_kvad	*save_kvad(t_kvad *kvad, t_point *sharps)
 	return (kvad);
 }
 
-t_kvad *get_tetri(t_kvad *all, char *str)
+t_kvad	*get_tetri(t_kvad *all, char *str)
 {
 	t_point	*sharps;
 
-//	all = NULL;
-//	all = (t_kvad *)malloc(sizeof(t_kvad));
-	sharps = NULL;
-	sharps = get_sharps2(str);
+	sharps = (t_point*)malloc(sizeof(t_point) * 4);
+	sharps = get_sharps2(str, sharps);
 	all = save_kvad(all, sharps);
 	return (all);
 }

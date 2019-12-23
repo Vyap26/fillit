@@ -50,73 +50,31 @@ t_point		*optimize_sharps(t_point *sharps)
 	return (temp);
 }
 
-t_point		*get_sharps2(char *temp)
+t_point		*get_sharps2(char *temp, t_point *sharps)
 {
-	t_point	*sharps;
 	int		g;
 	int		k;
-	int 	sharp;
+	int		sharp;
 
 	sharp = 0;
-	sharps = (t_point*)malloc(sizeof(t_point) * 4);
 	g = 0;
 	k = 0;
 	while (*temp != '\0')
 	{
 		if (*temp == '#')
 		{
-			sharps[sharp].y = k;
-//			ft_putnbr(sharps[sharp].x);
-			sharps[sharp].x = g;
-//			ft_putnbr(sharps[sharp].y);
-			sharp++;
+			sharps[sharp++].y = k;
+			sharps[sharp - 1].x = g;
 			k++;
-			//temp++;
 		}
 		else if (*temp == '\n')
 		{
 			g++;
 			k = 0;
-			//temp++;
 		}
 		else
 			k++;
 		temp++;
 	}
-//	printf("%c", '\n');
 	return (sharps);
 }
-
-t_point		*get_sharps(char *data)
-{
-	t_point	*sharps;
-	int		sharp;
-	int		i;
-
-	sharp = 0;
-	i = 0;
-	sharps = (t_point*)malloc(sizeof(t_point) * 4);
-	while (i < 20)
-	{
-		if (data[i] == '#')
-		{
-			sharps[sharp].x = i % 5;
-			sharps[sharp].y = i / 5;
-			sharp++;
-		}
-		i++;
-	}
-	sharps = optimize_sharps(sharps);
-	return (sharps);
-}
-
-//t_point		*figure()
-//{
-//	char	*a;
-//	t_point	*f;
-//
-//	a = "..#.\n.##.\n.#..\n....\n";
-//	printf("%s\n", a);
-//	f = get_sharps(a);
-//	return (f);
-//}
