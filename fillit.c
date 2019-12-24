@@ -12,30 +12,16 @@
 
 #include "fillit.h"
 
-int		main(int ac, char **av)
+int		checkend(int fd)
 {
-	char	*res;
-	int		fd;
-	t_kvad	*all;
-	char	*a;
-	char	*z;
+	int		ret;
+	char	str[BUFF_SIZE];
 
-	if (ac == 2)
-	{
-		fd = open(av[1], O_RDONLY);
-		all = NULL;
-	}
-    if (!(all = ft_checkfile(fd, all)))
-		ft_putstr("error\n");
-	else
-    	solve(all);
-    close(fd);
-    return (0);
-}
-
-int		checkend(fd)
-{
-
+	ret = read(fd, &str, BUFF_SIZE);
+	close(fd);
+	if (str[ret - 1] != '\n')
+		return (-1);
+	return (0);
 }
 
 int		ft_checktetra(char **tmp, char *res, int fd, char **line)
@@ -49,12 +35,7 @@ int		ft_checktetra(char **tmp, char *res, int fd, char **line)
 	ft_cutcol(tmp);
 	ft_putimg(tmp, res);
 	abr = ft_strdup(*line);
-	ft_putstr(*line);
-	ft_putchar('\n');
-	gnl = get_next_line(fd, &abr);
-	ft_putnbr(gnl);
-	ft_putchar('\n');
-	
+	gnl = get_next_line(fd, &abr);	
 	if ((ft_compare(res) != 0) || (gnl == 1 && *abr != '\0'))
 		return (-1);
 	free(abr);
@@ -83,7 +64,27 @@ t_kvad		*ft_checkfile(int fd, t_kvad *all)
         }
 		free(line);
         if (ret != 0)
-        ret = get_next_line(fd, &line);
+        	ret = get_next_line(fd, &line);
 	}
     return (all);
+}
+
+int		main(int ac, char **av)
+{
+	int		fd;
+	t_kvad	*all;
+
+	if (ac == 2 && checkend(open(av[1], O_RDONLY)) == 0)
+	{
+		fd = open(av[1], O_RDONLY);
+		all = NULL;
+		if(!(all = ft_checkfile(fd, all)))
+			ft_putstr("error\n");
+		else
+			solve(all);
+	}
+	else
+    	ft_putstr("error\n");
+    close(fd);
+    return (0);
 }
