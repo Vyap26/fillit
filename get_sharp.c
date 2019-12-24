@@ -63,8 +63,8 @@ t_point		*get_sharps2(char *temp, t_point *sharps)
 	{
 		if (*temp == '#')
 		{
-			sharps[sharp++].y = k;
-			sharps[sharp - 1].x = g;
+			sharps[sharp].y = k;
+			sharps[sharp++].x = g;
 			k++;
 		}
 		else if (*temp == '\n')
