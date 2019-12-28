@@ -12,17 +12,15 @@
 
 #include "fillit.h"
 
-// void		arrdel(char **str[4])
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (i < 4)
-// 	{
-// 		ft_strdel(str);
-// 		i++;
-// 	}
-// }
+void		cleanall(char **str, char *line, t_kvad *all)
+{
+	if (str && line && all)
+	{
+		free(line);
+		arrdel(str);
+		delete_kvad(all);
+	}
+}
 
 int			checkend(int fd)
 {
@@ -55,28 +53,27 @@ int			ft_checktetra(char **tmp, char *res, int fd, char **line)
 	return (0);
 }
 
-t_kvad		*ft_checkfile(int fd, t_kvad *all)
+t_kvad		*ft_checkfile(int fd, t_kvad *all, int i)
 {
-	int		i;
 	int		ret;
 	char	*line;
 	char	*tmp[4];
 	char	res[20];
 
 	ret = get_next_line(fd, &line);
-	i = 0;
 	while (ret > 0)
 	{
 		tmp[i++] = ft_strdup(line);
 		if (i == 4)
 		{
 			if (ft_checktetra(tmp, res, fd, &line) != 0)
-				{
-					free(line);
-					return (NULL);
-				}
+			{
+				cleanall(tmp, line, all);
+				return (NULL);
+			}
 			all = get_tetri(all, res);
 			i = 0;
+			arrdel(tmp);
 		}
 		free(line);
 		if (ret != 0)
@@ -95,12 +92,12 @@ int			main(int ac, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		all = NULL;
-		if (!(all = ft_checkfile(fd, all)))
+		if (!(all = ft_checkfile(fd, all, 0)))
 			ft_putstr("error\n");
 		else
 		{
 			solve(all);
-			//clean(all);
+			delete_kvad(all);
 		}
 	}
 	else

@@ -12,6 +12,18 @@
 
 #include "fillit.h"
 
+void	arrdel(char **str)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		ft_strdel(&str[i]);
+		i++;
+	}
+}
+
 void	ft_putimg(char **tmp, char *str)
 {
 	int i;
