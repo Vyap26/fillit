@@ -75,7 +75,7 @@ int		ft_compare(char *str)
 	while (ft_strcmp(initialiser(i), str) != 0)
 	{
 		i++;
-		if (i == 20)
+		if (i == 19)
 			return (-1);
 	}
 	return (0);

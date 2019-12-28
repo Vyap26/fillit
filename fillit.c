@@ -12,6 +12,18 @@
 
 #include "fillit.h"
 
+// void		arrdel(char **str[4])
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (i < 4)
+// 	{
+// 		ft_strdel(str);
+// 		i++;
+// 	}
+// }
+
 int			checkend(int fd)
 {
 	int		ret;
@@ -34,11 +46,12 @@ int			ft_checktetra(char **tmp, char *res, int fd, char **line)
 	ft_cutrow(tmp);
 	ft_cutcol(tmp);
 	ft_putimg(tmp, res);
-	abr = ft_strdup(*line);
+	abr = NULL;
+	abr = ft_strjoin(abr, *line);
 	gnl = get_next_line(fd, &abr);
 	if ((ft_compare(res) != 0) || (gnl == 1 && *abr != '\0'))
 		return (-1);
-	free(abr);
+	ft_strdel(&abr);
 	return (0);
 }
 
@@ -50,7 +63,6 @@ t_kvad		*ft_checkfile(int fd, t_kvad *all)
 	char	*tmp[4];
 	char	res[20];
 
-	line = NULL;
 	ret = get_next_line(fd, &line);
 	i = 0;
 	while (ret > 0)
@@ -59,7 +71,10 @@ t_kvad		*ft_checkfile(int fd, t_kvad *all)
 		if (i == 4)
 		{
 			if (ft_checktetra(tmp, res, fd, &line) != 0)
-				return (NULL);
+				{
+					free(line);
+					return (NULL);
+				}
 			all = get_tetri(all, res);
 			i = 0;
 		}
@@ -83,7 +98,10 @@ int			main(int ac, char **av)
 		if (!(all = ft_checkfile(fd, all)))
 			ft_putstr("error\n");
 		else
+		{
 			solve(all);
+			//clean(all);
+		}
 	}
 	else
 		ft_putstr("error\n");
