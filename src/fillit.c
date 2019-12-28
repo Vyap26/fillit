@@ -14,7 +14,7 @@
 
 void		cleanall(char **str, char *line, t_kvad *all)
 {
-	if (str && line && all)
+	if (str || line || all)
 	{
 		free(line);
 		arrdel(str);
@@ -29,7 +29,7 @@ int			checkend(int fd)
 
 	ret = read(fd, &str, BUFF_SIZE);
 	close(fd);
-	if (str[ret - 1] != '\n')
+	if (str[ret - 1] != '\n' || str[ret - 2] == '\n')
 		return (-1);
 	return (0);
 }
@@ -79,6 +79,12 @@ t_kvad		*ft_checkfile(int fd, t_kvad *all, int i)
 		if (ret != 0)
 			ret = get_next_line(fd, &line);
 	}
+	free(line);
+	if (i != 0)
+		{
+			cleanall(tmp, line, all);
+			return (NULL);
+		}
 	return (all);
 }
 

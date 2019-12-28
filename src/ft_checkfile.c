@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -20,7 +19,7 @@ int		ft_checkstr(char *str)
 
 	i = 0;
 	flag = 0;
-	if (ft_strlen(str) != 4 || !str || ft_strcmp(str, ""))
+	if (ft_strlen(str) != 4 || !str || ft_strcmp(str, "") == 0)
 		return (-1);
 	while ((str[i] == '.' || str[i] == '#') && (str[i] != '\0'))
 	{
