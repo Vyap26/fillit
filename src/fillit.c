@@ -12,14 +12,15 @@
 
 #include "fillit.h"
 
-void		cleanall(char **str, char *line, t_kvad *all)
+int			cleanall(char **tmp, char *line, t_kvad *all)
 {
-	if (str || line || all)
-	{
+	if (tmp)
+		arrdel(tmp);
+	if (line)
 		free(line);
-		arrdel(str);
+	if (all)
 		delete_kvad(all);
-	}
+	return (0);
 }
 
 int			checkend(int fd)
@@ -55,13 +56,11 @@ int			ft_checktetra(char **tmp, char *res, int fd, char **line)
 
 t_kvad		*ft_checkfile(int fd, t_kvad *all, int i)
 {
-	int		ret;
 	char	*line;
 	char	*tmp[4];
 	char	res[20];
 
-	ret = get_next_line(fd, &line);
-	while (ret > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
 		tmp[i++] = ft_strdup(line);
 		if (i == 4)
@@ -76,16 +75,9 @@ t_kvad		*ft_checkfile(int fd, t_kvad *all, int i)
 			arrdel(tmp);
 		}
 		free(line);
-		if (ret != 0)
-			ret = get_next_line(fd, &line);
 	}
 	free(line);
-	if (i != 0)
-		{
-			cleanall(tmp, line, all);
-			return (NULL);
-		}
-	return (all);
+	return (i != 0 ? NULL + cleanall(tmp, line, all) : all);
 }
 
 int			main(int ac, char **av)

@@ -63,7 +63,7 @@ void			ft_putimg(char **tmp, char *res);
 int				ft_compare(char *str);
 int				ft_checktetra(char **tmp, char *res, int fd, char **line);
 t_kvad			*ft_checkfile(int fd, t_kvad *all, int i);
-void			cleanall(char **str, char *line, t_kvad *all);
+int				cleanall(char **str, char *line, t_kvad *all);
 void			arrdel(char **str);
 
 #endif

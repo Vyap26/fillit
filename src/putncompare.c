@@ -17,7 +17,7 @@ void	arrdel(char **str)
 	int i;
 
 	i = 0;
-	while (i < 4)
+	while (*str)
 	{
 		ft_strdel(&str[i]);
 		i++;
